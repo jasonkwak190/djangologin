@@ -1,0 +1,9 @@
+Here is main
+
+<!--유저 메인에 아디비번 포스트방식으로 요청-->
+<form action="{% url 'users:main' %}" method= "post"> 
+    {% csrf_token %} <!--post 할시 토큰값 신청하기-->
+    <input type="input"    name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit"   value="Login">
+</form>

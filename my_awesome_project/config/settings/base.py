@@ -42,10 +42,18 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(
-        "DATABASE_URL",
-        default="postgres:///my_awesome_project",
-    ),
+    "default": {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djangogram',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+    # env.db(
+        # "DATABASE_URL",
+        # default="postgres://postgres:1234@localhost:5432/djangogram",
+    # ),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
@@ -80,8 +88,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "my_awesome_project.users",
+    # "my_awesome_project.users",
     # Your stuff: custom apps go here
+    "my_awesome_project.users.apps.UsersConfig",
+    "my_awesome_project.posts.apps.PostsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
